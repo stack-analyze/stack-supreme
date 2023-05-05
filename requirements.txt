@@ -1,0 +1,4 @@
+fire
+speedtest-cli
+prettyTable
+pyinstaller
