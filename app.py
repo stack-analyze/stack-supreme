@@ -14,7 +14,7 @@ class Commands(object):
 
         table.title = 'newtwork speedtest'
 
-        table.field_names = ["date", "ping", "download", "upload"]
+        table.field_names = ["hora", "ping", "bajada", "subida"]
 
         st.get_best_server()
 
@@ -28,14 +28,25 @@ class Commands(object):
         print(table)
 
     def system(self):
-        uname = platform.uname()
+        system_table = PrettyTable()
+        os = platform.uname()
+
+        system_table.header = False
+
+        system_table.add_rows([
+            ["Sistema", os.system],
+            ["Lanzamiento", os.release],
+            ["Versión", os.version],
+            ["Arquitectura", os.machine],
+            ["Procesador", os.processor]
+        ])
         
-        print(f"System: {uname.system}")
-        print(f"Node Name: {uname.node}")
-        print(f"Release: {uname.release}")
-        print(f"Version: {uname.version}")
-        print(f"Machine: {uname.machine}")
-        print(f"Processor: {uname.processor}")
+        if os.system == 'Windows': 
+            system_table.add_row(["Edicion", platform.win32_edition()])
+        else:
+            return
+        
+        print(system_table)
 
 if __name__ == '__main__':
     fire.Fire(Commands)
