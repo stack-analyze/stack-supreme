@@ -43,8 +43,6 @@ class Commands(object):
         
         if os.system == 'Windows': 
             system_table.add_row(["Edicion", platform.win32_edition()])
-        else:
-            return
         
         print(system_table)
 
